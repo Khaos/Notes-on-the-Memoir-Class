@@ -1,0 +1,16 @@
+tmp
+recycle
+Minimum/*.*
+!Minimum/memman.tex
+!Minimum/memsty.sty
+!Minimum/memlays.sty
+!Minimum/memfonts.sty
+!Minimum/titlepages.sty
+!Minimum/anvil2.mps
+!Minimum/memnoidxnum.tex
+Minimum/Fig/*.log
+Minimum/Fig/memman-mini-Fig.*
+!Fig/memman-mini-Fig.tex
+Fig/memman-mini-FigTmp.*
+!Fig/memman-mini-FigTmp.tex
+Fig/gnuplot
