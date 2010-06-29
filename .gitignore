@@ -11,6 +11,7 @@ Minimum/*.*
 !Minimum/titlepages.sty
 !Minimum/anvil2.mps
 !Minimum/memnoidxnum.tex
+!Minimum/Makeidxglo
 Minimum/Fig/*.log
 Minimum/Fig/memman-mini-Fig.*
 !Fig/memman-mini-Fig.tex
