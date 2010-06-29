@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>currentDocument</key>
+	<string>iDocs/iTeX/021Memoir/Memoir/Notes/.gitignore</string>
+	<key>documents</key>
+	<array>
+		<dict>
+			<key>filename</key>
+			<string>.gitignore</string>
+			<key>lastUsed</key>
+			<date>2010-06-29T11:56:14Z</date>
+		</dict>
+		<dict>
+			<key>filename</key>
+			<string>README</string>
+		</dict>
+		<dict>
+			<key>filename</key>
+			<string>Minimum/memfonts.sty</string>
+		</dict>
+		<dict>
+			<key>filename</key>
+			<string>Minimum/memlays.sty</string>
+		</dict>
+		<dict>
+			<key>filename</key>
+			<string>Minimum/memman-mini.tex</string>
+		</dict>
+		<dict>
+			<key>filename</key>
+			<string>Minimum/memnoidxnum.tex</string>
+		</dict>
+		<dict>
+			<key>filename</key>
+			<string>Minimum/memsty.sty</string>
+		</dict>
+		<dict>
+			<key>filename</key>
+			<string>Minimum/titlepages.sty</string>
+		</dict>
+	</array>
+	<key>fileHierarchyDrawerWidth</key>
+	<integer>200</integer>
+	<key>metaData</key>
+	<dict>
+		<key>iDocs/iTeX/021Memoir/Memoir/Notes/.gitignore</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>20</integer>
+				<key>line</key>
+				<integer>6</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>0</integer>
+		</dict>
+	</dict>
+	<key>openDocuments</key>
+	<array>
+		<string>iDocs/iTeX/021Memoir/Memoir/Notes/.gitignore</string>
+	</array>
+	<key>showFileHierarchyDrawer</key>
+	<true/>
+	<key>windowFrame</key>
+	<string>{{377, 52}, {811, 726}}</string>
+</dict>
+</plist>

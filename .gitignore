@@ -1,8 +1,10 @@
 tmp
 recycle
 codePDF
+.DS_Store
 Minimum/*.*
 !Minimum/memman.tex
+!Minimum/memman-mini.tex
 !Minimum/memsty.sty
 !Minimum/memlays.sty
 !Minimum/memfonts.sty
