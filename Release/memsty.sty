@@ -475,12 +475,18 @@ official r\^ole in fluffy souffl\'es?' }
                         \setlength{\parskip}{\z@}}
 \newlength{\gparindent} \setlength{\gparindent}{\parindent}
 \setlength{\gparindent}{0.5\parindent}
-% now we can do the new environment. This has no extra before/after spacing.
+% now we can do the new environment. This has no extra before/after
+% spacing.
+% \LMnote{2010/06/09}{Experimenting with a bit of space before and
+% after, looks a bit better}
 \newenvironment{lcode}{\@zeroseps
+  \nopagebreak
+  \vskip0.2em plus 0.1em minus 0.2em
   \renewcommand{\verbatim@startline}{\verbatim@line{\hskip\gparindent}}
   \small\setlength{\baselineskip}{\onelineskip}\verbatim}%
   {\endverbatim
-   \vspace{-\baselineskip}%
+    \vspace{-\baselineskip}
+  \vskip0.3em plus 0.1em minus 0.2em
    \noindent}
 
 %%%%% LaTeX syntax
@@ -488,9 +494,11 @@ official r\^ole in fluffy souffl\'es?' }
 \newcommand*{\tightcenter}{%
   \topsep=0.25\onelineskip\trivlist \centering\item\relax}
 \def\endtightcenter{\endtrivlist}
+\LMnote{2010/06/25}{Added a \cs{crcr} here, a bit of a tric, but now
+  the last line in syntax does not longer need to end with \\}
 \newenvironment{syntax}{\begin{tightcenter}
                         \begin{tabular}{|p{0.9\linewidth}|} \hline}%
-                       {\hline
+                       {\crcr\hline
                         \end{tabular}
                         \end{tightcenter}}
 

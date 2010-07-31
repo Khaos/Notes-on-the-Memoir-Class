@@ -3,12 +3,11 @@
 % memman.tex  Memoir class user manual (Part II only)  last updated 2009/09/07
 %             Author: Peter Wilson
 %             Copyright 2001, 2002, 2003, 2004, 2008, 2009 Peter R. wilson
+%
 %\listfiles
 \documentclass[10pt,letterpaper,extrafontsizes]{memoir}
 \listfiles
 \usepackage{comment}
-\usepackage[nofancy]{svninfo}
-\svnInfo $Id: memman.tex 189 2010-03-12 17:02:55Z daleif $ 
 
 
 % For (non-printing) notes  \PWnote{date}{text}
@@ -46,13 +45,68 @@
 %%%% extra index for first lines
 \makeindex[lines]
 
+
+% this 'if' is used to determine whether we are compiling the memoir
+% master in the subversion repository, or the public memman.tex
+\newif\ifMASTER
+\MASTERfalse
+%\MASTERtrue
+
+\ifMASTER
+% private package, not in circulation
+% enables us to gather svn information on a single file basis
+\usepackage[filehooks]{svn-multi-private}
+
+% \svnidlong
+% {}
+% {$LastChangedDate: 2010-07-01 00:21:04 +0200 (Thu, 01 Jul 2010) $}
+% {$LastChangedRevision: 244 $}
+% {$LastChangedBy: daleif $}
+
+
+
+\makeatletter
+\newcommand\addRevisionData{%
+  \begin{picture}(0,0)%
+    \put(0,-20){%
+      \tiny%
+      \expandafter\@ifmtarg\expandafter{\svnfiledate}{}{%
+        \textit{\textcolor{darkgray}{Chapter last updated \svnfileyear/\svnfilemonth/\svnfileday
+         \enspace (revision \svnfilerev)}}
+     }%
+    }%
+  \end{picture}%
+}
+\makeatother
+
+% we add this to the first page of each chapter
+
+\makepagestyle{chapter}
+\makeoddfoot{chapter}{\addRevisionData}{\thepage}{}
+\makeevenfoot{chapter}{\addRevisionData}{\thepage}{}
+
+\else
+% disable svn info collecting
+\newcommand\svnidlong[4]{}
+\fi
+
+
+
 %% end preamble
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %#% extend
 
+
 \begin{document}
 
+
+
 %#% extstart input intro.tex
+
+
+
+
+
 \tightlists
 %%%%\firmlists
 \midsloppy
@@ -158,7 +212,9 @@ Ninth impression, with additions and corrections: & 8 July 2009 \\
 Eighth edition:                        & August 2009 \\
 \end{tabular}
 \end{center}
-Last changed \svnInfoDate
+\ifMASTER
+Manual last changed \svnyear/\svnmonth/\svnday
+\fi
 
 \endgroup
 
@@ -232,6 +288,13 @@ Last changed \svnInfoDate
 
 %#% extstart include preface.tex
 %\chapter{Foreword}
+
+\svnidlong
+{$Ignore: $}
+{$LastChangedDate: 2010-05-13 17:10:00 +0200 (Thu, 13 May 2010) $}
+{$LastChangedRevision: 210 $}
+{$LastChangedBy: daleif $}
+
 \chapter{Preface}
 
     From personal experience and also from lurking on the \url{comp.text.tex}
@@ -1150,6 +1213,12 @@ been answered.
 
 %#% extstart include intro-8.tex
 
+\svnidlong
+{$Ignore: $}
+{$LastChangedDate: 2010-07-01 00:45:30 +0200 (Thu, 01 Jul 2010) $}
+{$LastChangedRevision: 246 $}
+{$LastChangedBy: daleif $}
+
 \chapter{Introduction to the eighth edition}
 
     The \Lclass{memoir} class and this manual have seen many changes since
@@ -1714,7 +1783,7 @@ Carsten Heinz,           % code
 Florence Henry,
 Peter Heslin,
 Timo Hoenig,             % thank you letter
-Morton H{\o}gholm,       % code
+Morten H{\o}gholm,       % code
 Henrik Holm,
 Vladimir Ivanovich,
 Martin J{\o}rgensen,     % bug report
@@ -1728,17 +1797,17 @@ Matthew Lovell,
 Daniel Luecking,         % codef
 Anders Lyhne,            % chapterstyle
 Lars Hendrik Gam Madsen, % extra space in Part title in ToC
-Lars Madsen,             % code
+Lars~Madsen,             % code
 Vittorio De Martino,
 Ben McKay,               % errors in pagenote instructions
-Frank Mittelbach,        % code
+Frank~Mittelbach,        % code
 Wilhelm M\"{u}ller,      % bugs & suggested extensions
-Vilar Camara Neto,
+Vilar~Camara~Neto,
 Rolf Niepraschk,
 Patrik Nyman,    
-Heiko Oberdiek,          % code
-Scott Pakin,
-Adriano Pascoletti,
+Heiko~Oberdiek,          % code
+Scott~Pakin,
+Adriano~Pascoletti,
 Paul,                    % bug report
 Ted Pavlic,              % typo report
 Troels Pedersen,         % chapterstyle
@@ -1752,6 +1821,7 @@ Ren{\'e},                % correction (paper folding)
 Alan Ristow,             % request for \leavespergathering
 Robert,
 Chris Rowley,
+Gary Ruben,              % bug report
 Robert Schlicht,         % code
 Doug Schenck,
 Dirk Schlimm,
@@ -1772,6 +1842,8 @@ J\"{u}rgen Vollmer,
 M J Williams,            % \input in tabular bug
 and 
 David Wilson.
+
+
 
 
 If I have inadvertently left anyone off the list I apologise, 
@@ -1828,8 +1900,19 @@ than correspond
 directly with the supporter, who might well be away for some considerable 
 time and perhaps not notice your email after having returned to base.
 
+Then dealing with memoir issues on \url{comp.text.tex}, please include
+the word \texttt{memoir} in the subject. That will help the memoir
+maintainer keep track of memoir related matters.
+
+
 %#% extend
 %#% extstart include terminology.tex
+
+\svnidlong
+{$Ignore: $}
+{$LastChangedDate: 2010-05-13 17:10:00 +0200 (Thu, 13 May 2010) $}
+{$LastChangedRevision: 210 $}
+{$LastChangedBy: daleif $}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Terminology}
@@ -2029,6 +2112,13 @@ an em, often a quad is 1em.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %#% extstart include start-off.tex
+
+
+\svnidlong
+{$Ignore: $}
+{$LastChangedDate: 2010-05-13 17:10:00 +0200 (Thu, 13 May 2010) $}
+{$LastChangedRevision: 210 $}
+{$LastChangedBy: daleif $}
 
 \chapter{Starting off} \label{chap:starting}
 
@@ -2630,6 +2720,13 @@ want to put \cmd{\raggedbottom} in the preamble\index{preamble}.
 \pagestyle{ruled}
 
 %#% extstart include laying-out-page.tex
+
+\svnidlong
+{$Ignore: $}
+{$LastChangedDate: 2010-05-13 17:10:00 +0200 (Thu, 13 May 2010) $}
+{$LastChangedRevision: 210 $}
+{$LastChangedBy: daleif $}
+
 \chapter{Laying out the page} \label{chap:layingpage}
 
 
@@ -4363,6 +4460,13 @@ effect.
 
 %#% extstart include text-and-fonts.tex
 
+\svnidlong
+{$Ignore: $}
+{$LastChangedDate: 2010-05-13 17:10:00 +0200 (Thu, 13 May 2010) $}
+{$LastChangedRevision: 210 $}
+{$LastChangedBy: daleif $}
+
+
 \chapter{Text and fonts}
 
     Presumably you will be creating a document that contains at least some
@@ -5452,6 +5556,13 @@ odd line or to reword the text.
 %#% extend
 %#% extstart include titles.tex
 
+\svnidlong
+{$Ignore: $}
+{$LastChangedDate: 2010-05-13 17:10:00 +0200 (Thu, 13 May 2010) $}
+{$LastChangedRevision: 210 $}
+{$LastChangedBy: daleif $}
+
+
 \chapter{Titles}
 
    The standard classes provide little in the way of help in setting
@@ -6278,6 +6389,11 @@ and thanks notes are meant to be different.
 
 %#% extstart include abstracts.tex
 
+\svnidlong
+{$Ignore: $}
+{$LastChangedDate: 2010-05-13 17:10:00 +0200 (Thu, 13 May 2010) $}
+{$LastChangedRevision: 210 $}
+{$LastChangedBy: daleif $}
 
 \chapter{Abstracts}
 
@@ -6544,6 +6660,11 @@ optional argument of the \cmd{\twocolumn} command. In fact,
 %#% extend
 %#% extstart include document-divisions.tex
 
+\svnidlong
+{$Ignore: $}
+{$LastChangedDate: 2010-06-09 14:51:45 +0200 (Wed, 09 Jun 2010) $}
+{$LastChangedRevision: 222 $}
+{$LastChangedBy: daleif $}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %   chapter style
@@ -8411,6 +8532,7 @@ on recto pages.
 \index{chapterstyle|)}
 
 \subsection{Chapter precis}
+\label{sec:chapter-precis}
 
 \index{chapter!precis|(}
 
@@ -8497,21 +8619,37 @@ are defined as:
 \end{lcode}
 Any or all of these can be changed if another style of typesetting is required.
 
-
+\LMnote{2010/06/09}{Changed a bit, and moved the glossary stuff here
+  where it naturally belong}
+Next the following macros control the formatting of the precis text in
+the ToC.
 \begin{syntax}
-\cmd{\precistoctext}\marg{text} \cmd{\precistocfont} \\
+\cmd{\precistoctext}\marg{text} \cmd{\precistocfont} \cmd{\precistocformat} \\
 \end{syntax}
-The \cmd{\chapterprecistoc} macro puts the macro \cmd{\precistoctext} into 
-the \ixfile{toc} file. The default definition is
+\glossary(precistoctext)%
+  {\cs{precistoctext}\marg{text}}%
+  {ToC entry for chapter precis \meta{text}}
+\glossary(precistocfont)%
+  {\cs{precistocfont}}%
+  {Font for typesetting \cs{precistoctext}.}
+\glossary(precistocformat)%
+  {\cs{precistocformat}}%
+  {Format for typesetting \cs{precistoctext}.}
+The \cmd{\chapterprecistoc} macro puts \cmd{\precistoctext}\marg{text} into 
+the \pixfile{toc} file. The default definition similar to (but not
+exactly\footnote{Internally we use a different name for \cs{leftskip}
+  and \cs{rightskip} to make it easier to do right to left document
+with the class and the \texttt{bidi} package.})
 \begin{lcode}
 \DeclareRobustCommand{\precistoctext}[1]{%
-  {\leftskip \cftchapterindent\relax
-   \advance\leftskip \cftchapternumwidth\relax
-   \rightskip \@tocrmarg\relax
-   \precistocfont #1\par}}
+  {\nopagebreak\leftskip \cftchapterindent\relax
+    \advance\leftskip \cftchapternumwidth\relax
+    \rightskip \@tocrmarg\relax
+    \precistocformat\precistocfont #1\par}}
 \end{lcode}
 Effectively, in the \toc{} \cmd{\precistoctext} typesets its argument like 
-a chapter title using the \cmd{\precistocfont} (default \cmd{\itshape}).
+a chapter title using the \cmd{\precistocfont} (default
+\cmd{\itshape}), and \cmd{\precistocformat} (default \cmd{\noindent}).
 
 \index{chapter!precis|)}
 
@@ -9417,6 +9555,11 @@ normal size by the time subsubsection heads are reached, or before.
 %#% extend
 %#% extstart include pagination-and-headers.tex
 
+\svnidlong
+{$Ignore: $}
+{$LastChangedDate: 2010-06-25 13:34:23 +0200 (Fri, 25 Jun 2010) $}
+{$LastChangedRevision: 236 $}
+{$LastChangedBy: daleif $}
 
 \chapterstyle{demo3}
 
@@ -9941,6 +10084,16 @@ particular pagestyle. The code normally defines the marks, if any,
 that will be used in
 the headers\index{header} and footers\index{footer}.
 
+\LMnote{2010/06/25}{Added a mentioning of \cs{makeheadfootstrut}}
+\begin{syntax}
+  \cmd{\makeheadfootstrut}\marg{style}\marg{head strut}\marg{foot strut}
+\end{syntax}
+The headers and footers are each made up of three separate
+entities. At the front and end of these a special \meta{style} related
+strut is inserted. By default \cmd{\makepagestyle} will initialize
+them to \cmd{\strut} (except the \pstyle{empty} style where the struts
+are empty). One can use the macro above to change these struts to
+something different.
 
 
 \subsection{Example pagestyles}
@@ -10625,7 +10778,9 @@ like:
   \end{picture}%
 }
 \makeatother
-\makepagestyle{chapter} % make chapter a real pagestyle not just an alias
+% chapter is normally an alias to the plain style, we want to change
+% it, so make it a real pagestyle
+\makepagestyle{chapter} 
 \makeoddfoot{chapter}{\addRevisionData}{\thepage}{}
 \makeevenfoot{chapter}{\addRevisionData}{\thepage}{}
 \end{lcode}
@@ -10633,6 +10788,12 @@ like:
 
 %#% extend
 %#% extstart include paragraphs-and-lists.tex
+
+\svnidlong
+{$Ignore: $}
+{$LastChangedDate: 2010-05-13 17:10:00 +0200 (Thu, 13 May 2010) $}
+{$LastChangedRevision: 210 $}
+{$LastChangedBy: daleif $}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -11819,6 +11980,11 @@ other environments.
 
 %#% extstart include content-lists.tex
 
+\svnidlong
+{$Ignore: $}
+{$LastChangedDate: 2010-06-09 15:19:40 +0200 (Wed, 09 Jun 2010) $}
+{$LastChangedRevision: 225 $}
+{$LastChangedBy: daleif $}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%
 %%\chapterstyle{section}
@@ -11883,7 +12049,7 @@ can be changed by using \cmd{\setcounter} or \cmd{\settocdepth}.
   {\cs{addcontentsline}\marg{file}\marg{kind}\marg{text}}%
   {Writes heading/caption data to the \meta{file} in the form of
    the \cs{contentsline} macro.}
-    \ltx\ generates a \ixfile{toc} file if the document contains a
+    \ltx\ generates a \pixfile{toc} file if the document contains a
  \cmd{\tableofcontents} command. The sectioning 
  commands\footnote{For figures and tables it is the 
  \cmd{\caption} command
@@ -11910,7 +12076,7 @@ can be changed by using \cmd{\setcounter} or \cmd{\settocdepth}.
 
     For example, if \verb?\section{Head text}? was typeset as 
 `\textbf{3.4 Head text}' on page 27, then there would be the following
-entry in the \ixfile{toc} file:
+entry in the \pixfile{toc} file:
 \begin{lcode}
 \contentsline{section}{\numberline{3.4} Head text}{27}
 \end{lcode}
@@ -13093,6 +13259,12 @@ captions\index{caption} are not too exotic, use the \cmd{\legend} command
 (see later). If the illustration\index{illustration} is numbered, use 
 \cmd{\cftaddnumtitleline} instead of \cmd{\cftaddtitleline}.
 
+
+\LMnote{2010/06/09}{Thought we needed a break here}
+\subsubsection{Inserting stuff into the content lists}
+\label{sec:inserting-stuff-into}
+
+
 The next functions were suggested by Lars\index{Madsen, Lars} Madsen who
 found them useful if, for example, you had two versions of the
 \toc\ and you needed some aspects to be formatted differently.
@@ -13139,26 +13311,17 @@ harm will come if a matching \cmd{\cftinserthook} is never used. No harm
 occures either if you call \cmd{\cftinserthook} and there is no prior
 matching \cmd{\cftinsertcode}.
 
+
+\LMnote{2010/06/09}{Ineffective to have this seceral places in the manual.}
+\subsubsection{Extra chapter material in the ToC}
+\label{sec:extra-chapt-mater}
+
 \begin{syntax}
-\cmd{\precistoctext}\marg{text} \cmd{\precistocfont} \\
+\cmd{\precistoctext}\marg{text} \cmd{\precistocfont} \cmd{\precistocformat}\\
 \end{syntax}
-\glossary(precistoctext)%
-  {\cs{precistoctext}\marg{text}}%
-  {ToC entry for chapter precis \meta{text}}
-\glossary(precistocfont)%
-  {\cs{precistocfont}}%
-  {Font for typesetting \cs{precistoctext}.}
-The \cmd{\chapterprecistoc} macro puts the macro \cmd{\precistoctext} into 
-the \ixfile{toc} file. The default definition is
-\begin{lcode}
-\DeclareRobustCommand{\precistoctext}[1]{%
-  {\leftskip \cftchapterindent\relax
-   \advance\leftskip \cftchapternumwidth\relax
-   \rightskip \@tocrmarg\relax
-   \precistocfont #1\par}}
-\end{lcode}
-Effectively, in the \toc{} \cmd{\precistoctext} typesets its argument like 
-a chapter title using the \cmd{\precistocfont} (default \cmd{\itshape}).
+The \cmd{\chapterprecistoc} macro puts  \cmd{\precistoctext}\marg{text} into 
+the \pixfile{toc} file. Further information as to the definition of
+this macro can be found in section~\ref{sec:chapter-precis}.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -13756,76 +13919,81 @@ printed folios\index{folio} or \cmd{\caption}s.
 
 
 
- \section{Chapter precis}
+\LMnote{2010/06/09}{Why do we have this exact section in two different
+chapters? No this links to the version i document-divisions.tex }
+\section{Chapter precis}
 
-\index{chapter!precis|(}
+See section~\ref{sec:chapter-precis} on page~\pageref{sec:chapter-precis}.
 
-   Some old style novels, and even some modern text 
- books,\footnote{For example, Robert Sedgewick, \textit{Algorithms},
- Addison-Wesley, 1983.} include a short synopsis of the contents of 
- the chapter either immediately
- after the chapter heading\index{heading!chapter} or in the \toc, or in both places.
 
-\begin{syntax}
-\cmd{\chapterprecis}\marg{text} \\
-\end{syntax}
-     The command \cmd{\chapterprecis} prints its argument 
- both at the
- point in the document where it is called, and also adds it to the \file{.toc}
- file. For example:
- \begin{lcode}
- ...
- \chapter{}  first chapter
- \chapterprecis{Our hero is introduced; family tree; early days.}
- ...
- \end{lcode}
+% \index{chapter!precis|(}
 
-\begin{syntax}
-\cmd{\chapterprecishere}\marg{text} \\
-\cmd{\chapterprecistoc}\marg{text} \\
-\end{syntax}
- The \cmd{\chapterprecis} command calls these two commands to print the
- \meta{text} in the document (the \cmd{\chapterprecishere} command) 
- and to put it into the \toc{} (the \cmd{\chapterprecistoc} command). 
- These can be used individually if required.
+%    Some old style novels, and even some modern text 
+%  books,\footnote{For example, Robert Sedgewick, \textit{Algorithms},
+%  Addison-Wesley, 1983.} include a short synopsis of the contents of 
+%  the chapter either immediately
+%  after the chapter heading\index{heading!chapter} or in the \toc, or in both places.
 
-\begin{syntax}
-\cmd{\prechapterprecis} \cmd{\postchapterprecis} \\
-\end{syntax}
-The \cmd{\chapterprecishere} macro is intended for use immediately after 
-a \cmd{\chapter}. The \meta{text} argument is typeset in
-italics in a \Ie{quote} environment. The macro's definition is:
-\begin{lcode}
-\newcommand{\chapterprecishere}[1]{%
-  \prechapterprecis #1\postchapterprecis}
-\end{lcode}
-where \cmd{\prechapterprecis} and \cmd{\postchapterprecis} are defined
-as:
-\begin{lcode}
-\newcommand{\prechapterprecis}{%
-  \vspace*{\prechapterprecisshift}%
-  \begin{quote}\normalfont\itshape}
-\newcommand{\postchapterprecis}{\end{quote}}
-\end{lcode}
-The \cmd{\prechapterprecis} and \cmd{\postchapterprecis} macros can be 
-changed if another style of typesetting is required.
+% \begin{syntax}
+% \cmd{\chapterprecis}\marg{text} \\
+% \end{syntax}
+%      The command \cmd{\chapterprecis} prints its argument 
+%  both at the
+%  point in the document where it is called, and also adds it to the \file{.toc}
+%  file. For example:
+%  \begin{lcode}
+%  ...
+%  \chapter{}  first chapter
+%  \chapterprecis{Our hero is introduced; family tree; early days.}
+%  ...
+%  \end{lcode}
 
-\begin{syntax}
-\cmd{\precistoctext}\marg{text} \cmd{\precistocfont} \\
-\end{syntax}
-The \cmd{\chapterprecistoc} macro puts the macro \cmd{\precistoctext} into 
-the \ixfile{toc} file. The default definition is
-\begin{lcode}
-\DeclareRobustCommand{\precistoctext}[1]{%
-  {\leftskip \cftchapterindent\relax
-   \advance\leftskip \cftchapternumwidth\relax
-   \rightskip \@tocrmarg\relax
-   \precistocfont #1\par}}
-\end{lcode}
-Effectively, in the \toc{} \cmd{\precistoctext} typesets its argument like 
-a chapter title using the \cmd{\precistocfont} (default \cmd{\itshape}).
+% \begin{syntax}
+% \cmd{\chapterprecishere}\marg{text} \\
+% \cmd{\chapterprecistoc}\marg{text} \\
+% \end{syntax}
+%  The \cmd{\chapterprecis} command calls these two commands to print the
+%  \meta{text} in the document (the \cmd{\chapterprecishere} command) 
+%  and to put it into the \toc{} (the \cmd{\chapterprecistoc} command). 
+%  These can be used individually if required.
 
-\index{chapter!precis|)}
+% \begin{syntax}
+% \cmd{\prechapterprecis} \cmd{\postchapterprecis} \\
+% \end{syntax}
+% The \cmd{\chapterprecishere} macro is intended for use immediately after 
+% a \cmd{\chapter}. The \meta{text} argument is typeset in
+% italics in a \Ie{quote} environment. The macro's definition is:
+% \begin{lcode}
+% \newcommand{\chapterprecishere}[1]{%
+%   \prechapterprecis #1\postchapterprecis}
+% \end{lcode}
+% where \cmd{\prechapterprecis} and \cmd{\postchapterprecis} are defined
+% as:
+% \begin{lcode}
+% \newcommand{\prechapterprecis}{%
+%   \vspace*{\prechapterprecisshift}%
+%   \begin{quote}\normalfont\itshape}
+% \newcommand{\postchapterprecis}{\end{quote}}
+% \end{lcode}
+% The \cmd{\prechapterprecis} and \cmd{\postchapterprecis} macros can be 
+% changed if another style of typesetting is required.
+
+% \begin{syntax}
+% \cmd{\precistoctext}\marg{text} \cmd{\precistocfont} \\
+% \end{syntax}
+% The \cmd{\chapterprecistoc} macro puts the macro \cmd{\precistoctext} into 
+% the \pixfile{toc} file. The default definition is
+% \begin{lcode}
+% \DeclareRobustCommand{\precistoctext}[1]{%
+%   {\leftskip \cftchapterindent\relax
+%    \advance\leftskip \cftchapternumwidth\relax
+%    \rightskip \@tocrmarg\relax
+%    \precistocfont #1\par}}
+% \end{lcode}
+% Effectively, in the \toc{} \cmd{\precistoctext} typesets its argument like 
+% a chapter title using the \cmd{\precistocfont} (default \cmd{\itshape}).
+
+% \index{chapter!precis|)}
 
 
 \section{Contents lists and bookmarks}
@@ -13846,8 +14014,24 @@ this is to add
 \end{lcode}
 just before the material you would like to pull out of the part tree.
 
+\LMnote{2010/06/09}{Heikos own recommendation}
+A better solution is the \Lpack{bookmark} package, add it to the
+preamble, and add 
+\begin{lcode}
+  \bookmarksetup{startatroot}
+\end{lcode}
+before the stuff you want to have moved out of, say, a part.
+
+
 %#% extend
 %#% extstart include flosts-and-captions.tex
+
+\svnidlong
+{$Ignore: $}
+{$LastChangedDate: 2010-05-13 17:10:00 +0200 (Thu, 13 May 2010) $}
+{$LastChangedRevision: 210 $}
+{$LastChangedBy: daleif $}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -16489,6 +16673,12 @@ footnote\index{footnote!text} text.
 
 %#% extstart include rows-and-columns.tex
 
+\svnidlong
+{$Ignore: $}
+{$LastChangedDate: 2010-05-13 17:10:00 +0200 (Thu, 13 May 2010) $}
+{$LastChangedRevision: 210 $}
+{$LastChangedBy: daleif $}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%% Original memman
@@ -18454,6 +18644,12 @@ illustrate these points.
 %#% extend
 %#% extstart include page-notes.tex
 
+\svnidlong
+{$Ignore: $}
+{$LastChangedDate: 2010-05-13 17:10:00 +0200 (Thu, 13 May 2010) $}
+{$LastChangedRevision: 210 $}
+{$LastChangedBy: daleif $}
+
 \chapter{Page notes} \label{chap:mnotes}
 
    The standard classes provide the \cmd{\footnote} command for notes
@@ -19793,6 +19989,11 @@ In the margin you will find the result of the following code:
 
 %#% extstart include decorative-text.tex
 
+\svnidlong
+{$Ignore: $}
+{$LastChangedDate: 2010-05-13 17:10:00 +0200 (Thu, 13 May 2010) $}
+{$LastChangedRevision: 210 $}
+{$LastChangedBy: daleif $}
 
 
 %%%%% end membook
@@ -20241,6 +20442,11 @@ for epigraphs after the title (or the equivalents for \cmd{\book} pages).
 %#% extend
 %#% extstart include poetry.tex
 
+\svnidlong
+{$Ignore: $}
+{$LastChangedDate: 2010-05-13 17:10:00 +0200 (Thu, 13 May 2010) $}
+{$LastChangedRevision: 210 $}
+{$LastChangedBy: daleif $}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\clearpage
@@ -21396,6 +21602,11 @@ and the result is shown on the next page.
 %#% extend
 %#% extstart include boxes-verbatims-and-files.tex
 
+\svnidlong
+{$Ignore: $}
+{$LastChangedDate: 2010-05-13 17:10:00 +0200 (Thu, 13 May 2010) $}
+{$LastChangedRevision: 210 $}
+{$LastChangedBy: daleif $}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%% membook
@@ -23358,6 +23569,12 @@ in the text must be \cmd{\protect}ed.\index{protect}
 %#% extend
 %#% extstart include cross-referencing.tex
 
+\svnidlong
+{$Ignore: $}
+{$LastChangedDate: 2010-05-13 17:10:00 +0200 (Thu, 13 May 2010) $}
+{$LastChangedRevision: 210 $}
+{$LastChangedBy: daleif $}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Cross referencing} \label{chap:xref}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -23718,6 +23935,17 @@ will require the use of \cmd{\titleref} and so the declaration
 
 %#% extend
 %#% extstart include backmatter.tex
+
+\svnidlong
+{$Ignore: $}
+{$LastChangedDate: 2010-06-09 14:23:37 +0200 (Wed, 09 Jun 2010) $}
+{$LastChangedRevision: 219 $}
+{$LastChangedBy: daleif $}
+
+
+\LMnote{2010/06/09}{Several \cs{ixfile}'s changed to \cs{pixfile},
+  with \cs{ixfile} only, no text appears in the output }
+
 
 \chapter{\prBackmatter} \label{chap:backmatter}
 
@@ -24341,7 +24569,7 @@ but could be redefined like, say,
   {Report attempts to use an \file{idx} file that has not been
    declared by \cs{makeindex}.}
 Following the declaration \cmd{\ignorenoidxfile}, which is the default,
-LaTeX will silently pass over attempts to use an \ixfile{idx} file which has
+LaTeX will silently pass over attempts to use an \pixfile{idx} file which has
 not been declared via \cmd{\makeindex}. After the declaration
 \cmd{\reportnoidxfile} LaTeX will whinge about any attempts to 
 write to an unopened file.
@@ -25010,7 +25238,7 @@ macro \cmd{\citeindexfile}. This is initially defined as:
 \newcommand{\citeindexfile}{\jobname}
 \end{lcode}
 That is, the citation entries will be written to the default 
-\ixfile{idx} file.
+\pixfile{idx} file.
 This may be not what you want so you can change this, for example to:
 \begin{lcode}
 \renewcommand{\citeindexfile}{names}
@@ -25578,7 +25806,7 @@ file has an \pixfile{ent} extension, like the table of contents file
 has a \pixfile{toc} extension.
 
     You have to put \cmd{\makepagenote} in your preamble if you want 
-endnotes. This will open the \ixfile{ent} note file which is called
+endnotes. This will open the \pixfile{ent} note file which is called
 \verb?\jobname.ent?.
 
    In the body of the text use use \cmd{\pagenote} to create an endnote, just
@@ -25611,12 +25839,12 @@ the listing.
    For one set of endnotes covering the whole document put 
 \cmd{\printpagenotes} where you want them printed, typically before
 any bibliography or index. The \cmd{\printpagenotes} macro inputs the
-\ixfile{ent} endnote file for printing and then closes it to any further
+\pixfile{ent} endnote file for printing and then closes it to any further
 notes.
 
 For notes
 at the end of each chapter put \cmd{\printpagenotes*}, which inputs
-the \ixfile{ent} file for printing then empties it ready for more notes,
+the \pixfile{ent} file for printing then empties it ready for more notes,
 at the end of each chapter.
 
    The simple use is like this:
@@ -25697,7 +25925,7 @@ be put in your preamble.
 
     Because of how TeX writes information to files, when the \cmd{\notepageref}
 declaration is used there must be no notes on the page where
-\cmd{\printnotes} or \cmd{\printnotes*} closes the \ixfile{ent} file. 
+\cmd{\printnotes} or \cmd{\printnotes*} closes the \pixfile{ent} file. 
 If necessary, a \cmd{\clearpage} or similar must be used before the 
 print command.
 
@@ -25720,7 +25948,7 @@ as:
 \newcommand*{\notedivision}{\chapter{\notesname}}
 \end{lcode}
 In other words, it will print out a heading for the notes that will be read
-from the \file{ent} file. \verb?\print...? then closes the \ixfile{ent} file 
+from the \file{ent} file. \verb?\print...? then closes the \pixfile{ent} file 
 for writing and after this \verb?\input?s it to get and process the notes.
 
 
@@ -25766,7 +25994,7 @@ of a note. The default definitions are:
   {\cs{postnoteinnotes}}%
   {Called by \cs{noteentry} to finish the printing of an endnote.}
 The \cmd{\pagenote} macro writes \cmd{\noteentry}, with the appropriate 
-values for the arguments, to the \ixfile{ent} file, 
+values for the arguments, to the \pixfile{ent} file, 
 where \meta{notenum} is the note number (from the \Icn{pagenote} counter),
 \meta{id} and \meta{text} are as supplied to
 \cmd{\pagenote}, and if the \cmd{\notepageref} declaration option is used, 
@@ -25850,7 +26078,7 @@ and is used to print the text of a note.
 \glossary(addtonotes)%
   {\cs{addtonotes}\marg{text}}%
   {Inserts \meta{text} into the endnotes \file{ent} file.}%
-The macro \cmd{\addtonotes} inserts \meta{text} into the \ixfile{ent}
+The macro \cmd{\addtonotes} inserts \meta{text} into the \pixfile{ent}
 file. For example, before the first note in a chapter, \cmd{\addtonotes} is
 used to write the \cmd{\pagenotesubhead} command to the file.
 
@@ -25875,7 +26103,7 @@ using \cmd{\protect} and see if they go away.
   {Starred chapter title for \cs{pagenotesubhead}. Defaults to the regular title.}
 
     The macro \cmd{\pagenotesubhead} typesets the subheadings in an endnote
-list. It is inserted into the \ixfile{ent} file via \cmd{\addtonotes}.
+list. It is inserted into the \pixfile{ent} file via \cmd{\addtonotes}.
 The \meta{chapapp} argument is normally \cmd{\chaptername} but if the
 notes are from an appendix then \cmd{\appendixname} is used instead. \meta{num}
 is the number of the chapter, or blank if there is no number. Lastly,
@@ -25917,6 +26145,12 @@ ignored as for \cmd{\pagenote} it can be arbitrary text whereas for
 
 %#% extend
 %#% extstart include miscellaneous.tex
+
+\svnidlong
+{$Ignore: $}
+{$LastChangedDate: 2010-07-01 01:49:45 +0200 (Thu, 01 Jul 2010) $}
+{$LastChangedRevision: 250 $}
+{$LastChangedBy: daleif $}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\clearpage
@@ -27826,7 +28060,7 @@ package includes the actual code for \meta{package}.
 \Mname\ does include code from several packages and uses
 a similar internal command to ensure that the packages are not
 loaded following some later \cmd{\usepackage} command. The names of the
-emulated packages are written to the \ixfile{log} file. At the time
+emulated packages are written to the \pixfile{log} file. At the time
 of writing the emulated packages are:
 \Lpack{abstract}, \Lpack{appendix}, \Lpack{array}, \Lpack{booktabs}, 
 \Lpack{ccaption}, \Lpack{chngcntr}, \Lpack{crop}, \Lpack{dcolumn}, 
@@ -28203,6 +28437,17 @@ The arguments are: (1) `\Margi', (2) `\Margii', (3) `\Margiii',
 \end{lcode}
 The arguments are: (1) `\Margi', (2) `\Margii', (3) `\Margiii', 
                    (4) `\Margiv', (5) `\Margv'.
+
+\LMnote{2010/07/01}{This is a large problem with subsubsection titles
+  if the \cs{memsecinfo} above is used, added a warning, and made sure
+  the test stops here.}
+\fancybreak{}
+
+\textbf{Warning:} Be very careful with the fifth argument of this
+macro when using \Lpack{hyperref}, this argument will then contain a
+hyper link anchor, whih may cause problems when used out of context.
+
+\renewcommand\memsecinfo[5]{}
   
 \section{Documenting \ltx\ commands}
 
@@ -28269,6 +28514,12 @@ The macro \cs{parg}\marg{arg} prints \parg{arg} for a parenthesized argument.
 
 %#% extend
 %#% extstart include for-package-users.tex
+
+\svnidlong
+{$Ignore: $}
+{$LastChangedDate: 2010-07-01 01:44:23 +0200 (Thu, 01 Jul 2010) $}
+{$LastChangedRevision: 249 $}
+{$LastChangedBy: daleif $}
 
 \chapter{For package users} \label{chap:packageusers}
 
@@ -28416,6 +28667,20 @@ of the standard commands needs to be replaced.
 
 
 
+
+%#% extend
+%#% extstart include an-example-book-design.tex
+
+\svnidlong
+{$Ignore: $}
+{$LastChangedDate: 2010-07-01 01:44:23 +0200 (Thu, 01 Jul 2010) $}
+{$LastChangedRevision: 249 $}
+{$LastChangedBy: daleif $}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\LMnote{2010/07/01}{This belongs here}
 \clearpage
 
 \makeatletter
@@ -28489,11 +28754,7 @@ of the standard commands needs to be replaced.
 
 \makeatother
 
-%#% extend
-%#% extstart include an-example-book-design.tex
 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \cleardoublepage
 \pagestyle{bringhurst}
 %%%\chapterstyle{bringhurst}
@@ -28989,6 +29250,12 @@ in your document's preamble\index{preamble}.
 \pagestyle{ruled}
 
 %#% extstart include an-example-thesis-design.tex
+
+\svnidlong
+{$Ignore: $}
+{$LastChangedDate: 2010-05-13 17:10:00 +0200 (Thu, 13 May 2010) $}
+{$LastChangedRevision: 210 $}
+{$LastChangedBy: daleif $}
 
 \PWnote{2009/07/05}{Added thesis design chapter}
 \PWnote{2009/07/08}{Revised thesis design chapter}
@@ -30012,6 +30279,12 @@ than Archibald Smythe University will permit.
 
 %#% extstart include packages-and-maros.tex
 
+\svnidlong
+{$Ignore: $}
+{$LastChangedDate: 2010-05-13 17:10:00 +0200 (Thu, 13 May 2010) $}
+{$LastChangedRevision: 210 $}
+{$LastChangedBy: daleif $}
+
 \chapter{Packages and macros}
 
     The \Mname\ class does not provide for everything that you
@@ -30242,6 +30515,12 @@ serves my needs.
 %#% extstart include sniplets.tex
 
 
+\svnidlong
+{$Ignore: $}
+{$LastChangedDate: 2010-05-13 17:10:00 +0200 (Thu, 13 May 2010) $}
+{$LastChangedRevision: 210 $}
+{$LastChangedBy: daleif $}
+
 \LMnote{2010/02/09}{Started the sniplet chapter}
 \chapter{Sniplets}
 \label{cha:sniplets}
@@ -30378,6 +30657,11 @@ trim marks Rolf Niepraschk suggested the following trick
 %#% extend
 %#% extstart include pictures.tex
 
+\svnidlong
+{$Ignore: $}
+{$LastChangedDate: 2010-05-13 17:10:00 +0200 (Thu, 13 May 2010) $}
+{$LastChangedRevision: 210 $}
+{$LastChangedBy: daleif $}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -31745,6 +32029,13 @@ exactly how many blobs to use for the curve.
 %#% extend
 %#% extstart include latex-and-tex.tex
 
+\svnidlong
+{$Ignore: $}
+{$LastChangedDate: 2010-05-13 17:10:00 +0200 (Thu, 13 May 2010) $}
+{$LastChangedRevision: 210 $}
+{$LastChangedBy: daleif $}
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{\ltx\ and \tx} \label{appendix:alltex}
 
@@ -33108,7 +33399,11 @@ but in this case the best place to look for further information is in the
 %#% extend
 %#% extstart include the-terrors-of-errors.tex
 
-
+\svnidlong
+{$Ignore: $}
+{$LastChangedDate: 2010-05-13 17:10:00 +0200 (Thu, 13 May 2010) $}
+{$LastChangedRevision: 210 $}
+{$LastChangedBy: daleif $}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -35569,6 +35864,7 @@ recognized.
 %#% extend
 
 %#% extstart input backend.tex
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%\endinput
