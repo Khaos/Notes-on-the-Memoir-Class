@@ -4,10 +4,14 @@
 
 \usepackage{layouts}
 
+\providecommand\LMnote[2]{}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % CHAPTER HEADING
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\LMnote{2010/08/20}{added some baselineskips etc. to make the drawing
+  more realistic}
 
 \newcommand{\drawchapter}{%
 % Some default values first
@@ -72,20 +76,22 @@
           \put(0,\l@youtyciv){\vector(0,-1){\l@youtvdv}}
           \put(0,\l@youtyciv){\begin{picture}(\l@youthdii,\l@youthdii)
             \put(\l@youthdiii,-\l@youthdii){\makebox(0,0)[tl]%
-              {\l@yparamfont \l@ypcmd{beforechapskip}}}
+              {\l@yparamfont \l@ypcmd{beforechapskip}
+                + \l@ypcmd{baselineskip} + \l@ypcmd{topskip}
+              }}
             \end{picture}}
 % The midskip
 %%          \put(0,\l@youtyciii){\vector(0,-1){\l@youtvdiv}}
           \put(-\l@youthdiii,\l@youtyciii){\vector(0,-1){\l@youtvdiv}}
           \put(0,\l@youtyciii){\begin{picture}(\l@youthdii,\l@youthdii)
             \put(\l@youthdiii,-\l@youthdii){\makebox(0,0)[tl]%
-              {\l@yparamfont \l@ypcmd{midchapskip}}}
+              {\l@yparamfont \l@ypcmd{midchapskip} + \l@ypcmd{baselineskip}}}
             \end{picture}}
 % And finish with the afterskip
           \put(0,\l@youtycii){\vector(0,-1){\l@youtvdiii}}
           \put(0,\l@youtycii){\begin{picture}(\l@youthdii,\l@youthdii)
             \put(\l@youthdiii,-\l@youthdii){\makebox(0,0)[tl]%
-              {\l@yparamfont \l@ypcmd{afterchapskip}}}
+              {\l@yparamfont \l@ypcmd{afterchapskip} + \l@ypcmd{baselineskip}}}
             \end{picture}}
         \fi
         \end{picture}}

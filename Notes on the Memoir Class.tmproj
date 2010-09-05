@@ -3,64 +3,68 @@
 <plist version="1.0">
 <dict>
 	<key>currentDocument</key>
-	<string>.gitignore</string>
+	<string>Minimum/memman-mini.tex</string>
 	<key>documents</key>
 	<array>
 		<dict>
 			<key>filename</key>
 			<string>.gitignore</string>
 			<key>lastUsed</key>
-			<date>2010-07-31T08:50:27Z</date>
+			<date>2010-09-05T15:32:53Z</date>
 		</dict>
 		<dict>
 			<key>filename</key>
 			<string>README</string>
 		</dict>
 		<dict>
-			<key>filename</key>
-			<string>Minimum/memfonts.sty</string>
+			<key>name</key>
+			<string>Release</string>
+			<key>regexFolderFilter</key>
+			<string>!.*/(\.[^/]*|CVS|_darcs|_MTN|\{arch\}|blib|.*~\.nib|.*\.(framework|app|pbproj|pbxproj|xcode(proj)?|bundle))$</string>
+			<key>sourceDirectory</key>
+			<string>Release</string>
 		</dict>
 		<dict>
-			<key>filename</key>
-			<string>Minimum/memlays.sty</string>
+			<key>name</key>
+			<string>Org</string>
+			<key>regexFolderFilter</key>
+			<string>!.*/(\.[^/]*|CVS|_darcs|_MTN|\{arch\}|blib|.*~\.nib|.*\.(framework|app|pbproj|pbxproj|xcode(proj)?|bundle))$</string>
+			<key>sourceDirectory</key>
+			<string>Org</string>
 		</dict>
 		<dict>
-			<key>filename</key>
-			<string>Minimum/Makeidxglo</string>
+			<key>expanded</key>
+			<true/>
+			<key>name</key>
+			<string>Minimum</string>
+			<key>regexFolderFilter</key>
+			<string>!.*/(\.[^/]*|CVS|_darcs|_MTN|\{arch\}|blib|.*~\.nib|.*\.(framework|app|pbproj|pbxproj|xcode(proj)?|bundle))$</string>
+			<key>sourceDirectory</key>
+			<string>Minimum</string>
 		</dict>
 		<dict>
-			<key>filename</key>
-			<string>Minimum/memman.tex</string>
-			<key>lastUsed</key>
-			<date>2010-06-29T15:17:01Z</date>
-		</dict>
-		<dict>
-			<key>filename</key>
-			<string>Minimum/memman-mini.tex</string>
-			<key>lastUsed</key>
-			<date>2010-07-31T08:50:27Z</date>
-		</dict>
-		<dict>
-			<key>filename</key>
-			<string>Minimum/memnoidxnum.tex</string>
-		</dict>
-		<dict>
-			<key>filename</key>
-			<string>Minimum/memsty.sty</string>
-		</dict>
-		<dict>
-			<key>filename</key>
-			<string>Minimum/titlepages.sty</string>
+			<key>name</key>
+			<string>recycle</string>
+			<key>regexFolderFilter</key>
+			<string>!.*/(\.[^/]*|CVS|_darcs|_MTN|\{arch\}|blib|.*~\.nib|.*\.(framework|app|pbproj|pbxproj|xcode(proj)?|bundle))$</string>
+			<key>sourceDirectory</key>
+			<string>recycle</string>
 		</dict>
 		<dict>
 			<key>name</key>
 			<string>Release</string>
 			<key>regexFolderFilter</key>
 			<string>!.*/(\.[^/]*|CVS|_darcs|_MTN|\{arch\}|blib|.*~\.nib|.*\.(framework|app|pbproj|pbxproj|xcode(proj)?|bundle))$</string>
-			<key>selected</key>
-			<true/>
 			<key>sourceDirectory</key>
 			<string>Release</string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>tmp</string>
+			<key>regexFolderFilter</key>
+			<string>!.*/(\.[^/]*|CVS|_darcs|_MTN|\{arch\}|blib|.*~\.nib|.*\.(framework|app|pbproj|pbxproj|xcode(proj)?|bundle))$</string>
+			<key>sourceDirectory</key>
+			<string>tmp</string>
 		</dict>
 	</array>
 	<key>fileHierarchyDrawerWidth</key>
@@ -86,14 +90,14 @@
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>26</integer>
+				<integer>0</integer>
 				<key>line</key>
-				<integer>19</integer>
+				<integer>17</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>97</integer>
+			<integer>0</integer>
 		</dict>
 	</dict>
 	<key>openDocuments</key>
@@ -104,6 +108,6 @@
 	<key>showFileHierarchyDrawer</key>
 	<true/>
 	<key>windowFrame</key>
-	<string>{{292, 52}, {695, 726}}</string>
+	<string>{{582, 4}, {698, 774}}</string>
 </dict>
 </plist>

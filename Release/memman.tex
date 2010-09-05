@@ -2116,8 +2116,8 @@ an em, often a quad is 1em.
 
 \svnidlong
 {$Ignore: $}
-{$LastChangedDate: 2010-05-13 17:10:00 +0200 (Thu, 13 May 2010) $}
-{$LastChangedRevision: 210 $}
+{$LastChangedDate: 2010-07-15 22:37:02 +0200 (Thu, 15 Jul 2010) $}
+{$LastChangedRevision: 256 $}
 {$LastChangedBy: daleif $}
 
 \chapter{Starting off} \label{chap:starting}
@@ -2378,7 +2378,7 @@ offers a wider range of type sizes\index{type size} than usual. These are:\index
 \glossary(11ptco)%
   {\Popt{11pt}}%
   {Class option for a 11pt body font.}
-\item[\Lopt{12pt}] for 12t as the normal type size
+\item[\Lopt{12pt}] for 12pt as the normal type size
 \glossary(12ptco)%
   {\Popt{12pt}}%
   {Class option for a 12pt body font.}
@@ -6662,8 +6662,8 @@ optional argument of the \cmd{\twocolumn} command. In fact,
 
 \svnidlong
 {$Ignore: $}
-{$LastChangedDate: 2010-06-09 14:51:45 +0200 (Wed, 09 Jun 2010) $}
-{$LastChangedRevision: 222 $}
+{$LastChangedDate: 2010-08-20 20:04:46 +0200 (Fri, 20 Aug 2010) $}
+{$LastChangedRevision: 267 $}
 {$LastChangedBy: daleif $}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -6684,19 +6684,19 @@ optional argument of the \cmd{\twocolumn} command. In fact,
 
 \chapter{Document divisions}
 
-    For this chapter the \cstyle{pedersen} chapterstyle has been 
-used in order to demonstrate how it appears.
+For this chapter the \cstyle{pedersen} chapterstyle has been used in
+order to demonstrate how it appears.
 
 
-    In this chapter I first discuss the various kinds of divisions
-within a book and the commands for typesetting these.
+In this chapter I first discuss the various kinds of divisions within
+a book and the commands for typesetting these.
 
 After that I describe the class methods for modifying the appearance
 of the chapter and other sectional titles (subheads)\index{subhead}.
-    The facilities described here provide roughly the same as you would
-get if you used the \Lpack{titlesec}~\cite{TITLESEC} and 
-\Lpack{sectsty}~\cite{SECTSTY} packages together; the commands are different,
-though.
+The facilities described here provide roughly the same as you would
+get if you used the \Lpack{titlesec}~\cite{TITLESEC} and
+\Lpack{sectsty}~\cite{SECTSTY} packages together; the commands are
+different, though.
 
 \section{Logical divisions}
 
@@ -7521,7 +7521,9 @@ The general layout is shown in \fref{lay:chap}.
 \setlayoutscale{1}
 \centering
 \chapterdiagram
-\caption{Class layout parameters for chapter titles} \label{lay:chap}
+\caption{Class layout parameters for chapter titles. Working with
+  \cs{beforechapskip} need a little thought, see the text.} 
+\label{lay:chap}
 \end{figure}
 
 \begin{syntax}
@@ -7590,7 +7592,37 @@ title. By default it inserts \lnc{\afterchapskip} space (default
 40pt).
 
 The lengths \lnc{\beforechapskip}, \lnc{\midchapskip} and \lnc{\afterchapskip}
-can all be changed by \cmd{\setlength} or \cmd{\addtolength}.
+can all be changed by \cmd{\setlength} or \cmd{\addtolength}. Though
+as mentioned in \fref{lay:chap} they need some explanation:
+\begingroup
+\medskip
+\setlength\overfullrule{5pt}
+\setlength\unitlength{\textwidth}
+\addtolength\unitlength{-\labelsep}
+\renewcommand\descriptionlabel[1]{\hspace\labelsep\parbox{\unitlength}{\cs{#1}}}
+\begin{description}
+\item[beforechapskip] See \fref{lay:chap}.  The actual distance
+  between the first baseline of the chapter stuff to the top of the
+  text block is
+  \cmd{\beforechapskip}\,+\,\cmd{\topskip}\,+\,\cmd{\baselineskip}.
+  But because the implementation of \cmd{\chapter} (via
+  \cmd{\chapterheadstart}) make use of \cmd{\vspace*}, getting rid of
+  \cmd{\beforechapskip} a strange endeavour. If you want to avoid any
+  space before the first text in the chapter heading, use
+  \begin{lcode}
+    \setlength\beforechapskip{-\baselineskip}
+  \end{lcode}
+  or redefine \cmd{\chapterheadstart} to do nothing.
+\item[midchapskip] 
+\item[afterchapskip] 
+  for both, one has to add \cmd{\baselineskip} to
+  get the distance baseline to baseline.
+\end{description}
+\endgroup
+
+
+
+
 
 \begin{syntax}
 \cmd{\printchaptername} \cmd{\chapnamefont} \\
@@ -7656,6 +7688,24 @@ as illustrated below:
   \printchaptertitle{#1}  % title
   \afterchaptertitle}     % \afterchapskip space after title
 \end{lcode}
+%
+%
+%
+\LMnote{2010/07/16}{added}
+By default the first paragraph following a \cs{chapter} is \emph{not}
+indented, this can be controlled by
+\begin{syntax}
+  \cmd{\indentafterchapter}\\
+  \cmd{\noindentafterchapter}
+\end{syntax}
+\glossary(indentafterchapter)%
+{\cs{indentafterchapter}}%
+{Specifies that the first paragraph after a \cs{chapter} should be indented}
+\glossary(noindentafterchapter)%
+{\cs{noindentafterchapter}}%
+{Specifies that the first paragraph after a \cs{chapter} should \emph{not} be indented}
+The default is not to indent the first paragraph following a
+\cs{chapter}.
 
 \begin{syntax}
 \cmd{\insertchapterspace} \\
