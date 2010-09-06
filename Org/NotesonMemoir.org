@@ -1,0 +1,126 @@
+#+STARTUP: indent
+#+STARTUP: content
+#+STARTUP: align
+
+#+TODO: TODO(t) DOING(i!) HANGUP(h!) | DONE(d!) CANCEL(c@!)
+#+TODO: 
+
+#+TAGS: DJ-defined(d) { LaTeX(l) Memman(m) User-defined(u) To_be_determ(t) }
+#+TAGS: File(f) { Package(p) Command(c) }
+
+#+OPTIONS:
+
+
+#+TITLE: Notes on Memoir Class
+#+AUTHOR: Dazhi Jiang
+#+EMAIL:  jiangdzh@gmail.com
+
+
+
+
+* Dump
+
+** The Preamble of Memoir Manual Document
+
+*** The 'memman.tex'                                            :Memman:File:
+**** \listfiles                                              :Memman:Command:
+- See [[http://www.tex.ac.uk/cgi-bin/texfaq2html?label%3Dfilesused][All the files used by this document]]. 
+- The command places a list of the files used and their version
+  numbers in the log file.
+- This is useful when you're sharing a document with someone else.
+
+**** Package 'comment'                                       :Memman:Package:
+
+**** Package 'svninfo'                                       :Memman:Package:
+- Document version control
+
+**** \PWnote                                                 :Memman:Command:
+- non-printing notes
+
+**** \LMnote                                                 :Memman:Command:
+
+**** Package 'memsty'                                        :Memman:Package:
+- See more details in section [['memsty.sty']]
+
+**** Pakcage 'titlepages'                                    :Memman:Package:
+- See more details in section [['titlepages.sty']]
+
+**** Package 'memlays'                                       :Memman:Package:
+- See more details in section [['memlays.sty']]
+
+**** Package 'dpfloat'                                        :LaTeX:Package:
+- Formatting Double-Page Floats in \LaTeX
+- Floats on facing pages
+
+**** Package 'fonttable'                                      :LaTeX:Package:
+- This package let you typeset a font's character in tabular and/or
+  running text forms.
+
+**** \headstyles{memman}                                     :Memman:Command:
+- Use the built-in division styling, see more details in
+  'memman.pdf' (Page 111)
+
+**** \settocdepth{subsection}                                 :LaTeX:Command:
+- ToC down to subsections
+
+**** \setsecnumdepth{subsection}                              :LaTeX:Command:
+- Numbering down to subsections as well
+
+**** \makeindex[lines]                                 :To_be_determ:Command:
+- extra index for first lines
+
+
+*** The <<'memsty.sty'>>
+**** Package 'etex'                                           :LaTeX:Package:
+
+
+**** Package 'layouts'                                        :LaTeX:Package:
+- The \LaTeX layouts package enables the display of various elements
+  of a document’s layout.
+
+**** Package 'url'                                            :LaTeX:Package:
+
+
+**** Package 'fixltx2e'                                :To_be_determ:Package:
+
+
+**** Package 'alltt'                                   :To_be_determ:Package:
+
+
+**** Package 'graphicx'                                       :LaTeX:Package:
+
+
+**** Package 'xcolor'                                         :LaTeX:Package:
+- [ ] No option is there, so perhaps I should try 'svgname' option
+
+**** Package 'latexsym'                                       :LaTeX:Package:
+
+**** Package 'memfonts'                                      :Memman:Package:
+- See more details in Section [['memfonts.sty']]
+
+**** Package 'pifont'                                         :LaTeX:Package:
+
+**** Package 'amsmath'                                        :LaTeX:Package:
+
+**** Package 'fontenc'                                        :LaTeX:Package:
+- Option: T1
+
+
+
+
+*** The <<'titlepages.sty'>>
+
+****  
+
+*** The <<'memlays.sty'>>
+
+**** Package 'layouts'                                        :LaTeX:Package:
+
+**** LMnote                                                  :Memman:Command:
+
+*** The <<'memfonts.sty'>>
+
+**** 
+
+
+* TODODump

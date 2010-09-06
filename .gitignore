@@ -18,3 +18,5 @@ Minimum/Fig/memman-mini-Fig.*
 Fig/memman-mini-FigTmp.*
 !Fig/memman-mini-FigTmp.tex
 Fig/gnuplot
+Org/*.*
+!Org/*.org

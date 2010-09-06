@@ -10,7 +10,7 @@
 			<key>filename</key>
 			<string>.gitignore</string>
 			<key>lastUsed</key>
-			<date>2010-09-05T15:32:53Z</date>
+			<date>2010-09-05T20:26:53Z</date>
 		</dict>
 		<dict>
 			<key>filename</key>
@@ -59,6 +59,8 @@
 			<string>Release</string>
 		</dict>
 		<dict>
+			<key>expanded</key>
+			<true/>
 			<key>name</key>
 			<string>tmp</string>
 			<key>regexFolderFilter</key>
@@ -85,14 +87,56 @@
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
 		</dict>
-		<key>Minimum/memman-mini.tex</key>
+		<key>Minimum/memman-mini.log</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
 				<integer>0</integer>
 				<key>line</key>
-				<integer>17</integer>
+				<integer>0</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>0</integer>
+		</dict>
+		<key>Minimum/memman-mini.tex</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>4</integer>
+				<key>line</key>
+				<integer>16</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>0</integer>
+		</dict>
+		<key>tmp/memoir/doc-src/memman.tex</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>0</integer>
+				<key>line</key>
+				<integer>2722</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>2711</integer>
+		</dict>
+		<key>tmp/memoir/memoir.cls</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>26</integer>
+				<key>line</key>
+				<integer>9</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
@@ -103,11 +147,14 @@
 	<key>openDocuments</key>
 	<array>
 		<string>.gitignore</string>
+		<string>tmp/memoir/memoir.cls</string>
 		<string>Minimum/memman-mini.tex</string>
+		<string>Minimum/memman-mini.log</string>
+		<string>tmp/memoir/doc-src/memman.tex</string>
 	</array>
 	<key>showFileHierarchyDrawer</key>
 	<true/>
 	<key>windowFrame</key>
-	<string>{{582, 4}, {698, 774}}</string>
+	<string>{{1569, 32}, {698, 768}}</string>
 </dict>
 </plist>
