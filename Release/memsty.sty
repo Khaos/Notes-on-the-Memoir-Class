@@ -1,27 +1,108 @@
 %% memsty.sty    For memman
 \ProvidesPackage{memsty}[2010/02/09 for memman]
 
+%% ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+%% !!!
+%% Modified by Dazhi Jiang, 2010-09-23
+%% Change \usepackage to \RequrePackage
+
+% %%%%\usepackage{desc}% temporary, until code added to memoir itself
+% 
+% %%\usepackage{layouts}[2001/04/29]
+% %%\usepackage{verbatim}
+% %%\usepackage{glossit}
+% \usepackage{etex}
+% \usepackage{layouts}[2001/04/29]
+% \usepackage{url}
+% \usepackage{fixltx2e}
+% \usepackage{alltt}
+% \usepackage{graphicx}
+% \usepackage{xcolor}
+% \usepackage{latexsym}
+% \usepackage{memfonts}
+% \usepackage{pifont}
+% \usepackage{amsmath}
+% \usepackage[T1]{fontenc}
+
 %%%%\usepackage{desc}% temporary, until code added to memoir itself
 
 %%\usepackage{layouts}[2001/04/29]
 %%\usepackage{verbatim}
 %%\usepackage{glossit}
-\usepackage{etex}
-\usepackage{layouts}[2001/04/29]
-\usepackage{url}
-\usepackage{fixltx2e}
-\usepackage{alltt}
-\usepackage{graphicx}
-\usepackage{xcolor}
-\usepackage{latexsym}
-\usepackage{memfonts}
-\usepackage{pifont}
-\usepackage{amsmath}
-\usepackage[T1]{fontenc}
+\RequirePackage{etex}
+\RequirePackage{layouts}[2001/04/29]
+\RequirePackage{url}
+\RequirePackage{fixltx2e}
+\RequirePackage{alltt}
+\RequirePackage{graphicx}
+\RequirePackage{xcolor}
+\RequirePackage{latexsym}
+\RequirePackage{memfonts}
+\RequirePackage{pifont}
+\RequirePackage{amsmath}
+\RequirePackage[T1]{fontenc}
+
+%% END: Change \usepackage to \RequrePackage
+%% ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
 
 \providecommand{\LMnote}[2]{}  
 \providecommand{\PWnote}[2]{}  
 
+
+%% ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+%% Created by Dazhi Jiang, 2010-09-23
+%% Load pgfkeys
+\RequirePackage{pgfkeys}
+\RequirePackage{pgfopts}
+%% END: Load pgfkeys
+%% ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+%% ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+%% Created by Dazhi Jiang, 2010-09-23
+%% Define switchers
+\newif\ifmemsty@makeidx		% Index switcher
+\newif\ifmemsty@makeglo		% Glossary switcher
+\newif\ifmemsty@makeent		% Endnotes switcher
+\newif\ifmemsty@makeego		% Endnotes switcher
+% \newif\ifmemsty@make
+
+%% END: Define switchers
+%% ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+%% ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+%% Created by Dazhi Jiang, 2010-09-23
+%% Define pgfkeys for 'memsty'
+%% Define pgfkeys
+\pgfkeys{%
+	/memsty/.cd,
+	makeidx/.is if=memsty@makeidx,
+	makeglo/.is if=memsty@makeglo,
+	makeent/.is if=memsty@makeent,
+	makeego/.is if=memsty@makeego,
+	makeidx/.default=true,
+	makeglo/.default=true,
+	makeent/.default=true,
+	makeego/.default=true,
+}
+
+%% Define the default options
+\pgfkeys{%
+	/memsty/.cd,
+	makeidx,
+	makeglo,
+	makeent,
+	makeego,
+}
+
+%% Declare pgf package options
+%% Note that this declaration command has to be put after all \pgfkeys
+\ProcessPgfPackageOptions{/memsty}
+
+%% END: Define pgfkeys for 'memsty'
+%% ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
 %%%%%%%%%%%%%%%%%%% kill scale change warning in layouts
@@ -48,11 +129,30 @@
   \makeevenfoot{index}{\thepage}{}{}
   \makeoddfoot{index}{}{}{\thepage}
 
-\makeindex
+%% ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+%% !!!
+%% Modified by Dazhi Jiang, 2010-09-23
+%% Make Index
+\ifmemsty@makeidx
+	\makeindex
+\fi
+%% END: Make Index
+%% ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
 %\showindexmarktrue
 
+
 %%%%%%%%%%%%%%%%%%%%%%% glossary
-\makeglossary
+%% ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+%% !!!
+%% Modified by Dazhi Jiang, 2010-09-23
+%% Make Glossary
+\ifmemsty@makeglo
+	\makeglossary
+\fi
+%% END: Make Glossary
+%% ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
 \changeglossactual{?}
 \changeglossnum{\@currentlabel} 
 \changeglossnum{\thepage}
@@ -69,8 +169,18 @@
   \fi}
 \renewcommand*{\glossarymark}{\markboth{\glossaryname}{\glossaryname}}
 
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%% endnotes
-\makepagenote
+%% ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+%% !!!
+%% Modified by Dazhi Jiang, 2010-09-23
+%% Make Endnotes
+\ifmemsty@makeent
+	\makepagenote
+\fi
+%% END: Make Endnotes
+%% ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
 \notepageref%      use page numbers
 \newcommand*{\notemark}{\markboth{\notesname}{\notesname}}
 \renewcommand*{\notedivision}{\chapter{\notesname}\notemark}
@@ -788,8 +898,17 @@ chapterstyle. It is one of several styles that come as part of the
 \newcommand*{\egend}{%
   \end{minipage}\end{adjustwidth}\endgroup\par}
 
-\newoutputstream{egout}
-  \openoutputfile{\jobname.ego}{egout}
+%% ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+%% !!!
+%% Modified by Dazhi Jiang, 2010-09-23
+%% Make Tyepset Example List
+\ifmemsty@makeego
+	\newoutputstream{egout}
+	  \openoutputfile{\jobname.ego}{egout}
+\fi
+%% END: Make Tyepset Example List
+%% ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
 
 \newcommand*{\shadefigurecolor}{\definecolor{shadecolor}{gray}{0.75}}
 \newenvironment{shadefigure}{%
