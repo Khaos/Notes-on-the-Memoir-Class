@@ -157,6 +157,8 @@
 \end{center}
 \begin{center}
 \LARGE\textsf{Peter Wilson}\par
+\medskip
+\normalsize\textsf{Maintained by Lars Madsen}\par
 \end{center}
 \vspace*{\fill}
 \def\THP{T\kern-0.2em H\kern-0.4em P}%   OK for CMR
@@ -1215,8 +1217,8 @@ been answered.
 
 \svnidlong
 {$Ignore: $}
-{$LastChangedDate: 2010-07-01 00:45:30 +0200 (Thu, 01 Jul 2010) $}
-{$LastChangedRevision: 246 $}
+{$LastChangedDate: 2010-09-19 13:11:31 +0200 (Sun, 19 Sep 2010) $}
+{$LastChangedRevision: 275 $}
 {$LastChangedBy: daleif $}
 
 \chapter{Introduction to the eighth edition}
@@ -1848,8 +1850,9 @@ David Wilson.
 
 If I have inadvertently left anyone off the list I apologise, 
 and please let me know so that I can correct the 
-omisssion.\footnote{I am currently occasionably reachable via email
-at \texttt{herries dot press (at) earthlink dot net}.}
+omisssion.\footnote{Peter is currently occasionably reachable via email
+at \texttt{herries dot press (at) earthlink dot net}, otherwise write
+the maintainer at \texttt{daleif+memoir at imf dot au dot dk}}
 Along those lines, if you have any questions please direct them 
 to the \url{comp.text.tex} newsgroup instead of directly to me as
 you are much more likely to get a satisfactory and timely response.
@@ -1889,20 +1892,33 @@ or a package of your own or a class of your own (with a different name)
 and make the changes there. Do not expect any help if you change the
 \Lclass{memoir} class code directly.
 
+\fancybreak{}
 
-    As the years go by support for \Lclass{memoir} will devolve from one
+As the years go by support for \Lclass{memoir} will devolve from one
 person to another.\footnote{This is currently (July 2009) happening as
-Lars Madsen is taking over from Peter Wilson.} 
-Therefore it is probably
-safer to ask questions, complain, make suggestions, etc.,  on the 
-\url{comp.text.tex} newsgroup, which is archived and read by many, 
-than correspond
-directly with the supporter, who might well be away for some considerable 
-time and perhaps not notice your email after having returned to base.
+  Lars Madsen is taking over from Peter Wilson.}  Therefore it is
+probably safer to ask questions, complain, make suggestions, etc., on
+the newsgroup called \url{comp.text.tex}, which is archived and read
+by many, than correspond directly with the maintainer, who might well
+be away for some considerable time and perhaps not notice your email
+after having returned to base.
 
 Then dealing with memoir issues on \url{comp.text.tex}, please include
 the word \texttt{memoir} in the subject. That will help the memoir
 maintainer keep track of memoir related matters.
+
+
+If you do not have access to \url{comp.text.tex} you may also email
+the current maintainer at \texttt{daleif+memoir at imf dot au dot dk}.
+
+\fancybreak{}
+
+\textit{From the maintainer:} As I do not regularly read \LaTeX\
+related forums (like \url{www.latex-community.org} or
+\url{tex.stackexchange.com}), it will be a good idea to either write
+me directly or re-post the question on \url{comp.text.tex} if noone
+comes up with a suitable answer for questions involving \Lclass{memoir}.
+
 
 
 %#% extend
@@ -2723,8 +2739,8 @@ want to put \cmd{\raggedbottom} in the preamble\index{preamble}.
 
 \svnidlong
 {$Ignore: $}
-{$LastChangedDate: 2010-05-13 17:10:00 +0200 (Thu, 13 May 2010) $}
-{$LastChangedRevision: 210 $}
+{$LastChangedDate: 2010-09-17 00:43:51 +0200 (Fri, 17 Sep 2010) $}
+{$LastChangedRevision: 274 $}
 {$LastChangedBy: daleif $}
 
 \chapter{Laying out the page} \label{chap:layingpage}
@@ -3974,10 +3990,17 @@ the layout in any way, you must call \cmd{\checkandfixthelayout} after you have
 made all the necessary changes. As an aid, the final layout parameter values
 are displayed on the terminal and written out to the log file.
 
+\LMnote{2010/09/17}{added \cs{\settypeoutlayoutunit}}
 \begin{syntax}
 \cmd{\typeoutlayout} \\
 \cmd{\typeoutstandardlayout} \\
+\cmd{\settypeoutlayoutunit}\marg{unit} \\
 \end{syntax}
+\glossary(settypeoutlayoutunit)%
+  {\cs{settypeoutlayoutunit}}%
+  {Allows the user to set the unit in which to typeset the layout
+    listing. Supported units: \texttt{pt}, \texttt{mm}, \texttt{cm},
+    \texttt{in}, \texttt{bp}, \texttt{dd} and \texttt{cc}.}
 \glossary(typeoutlayout)%
   {\cs{typeoutlayout}}%
   {Outputs the current values of the class layout parameters to the 
@@ -3994,6 +4017,12 @@ The macro \cmd{\typeoutstandardlayout} writes the
 standard layout parameter\index{page layout!LaTeX parameters?\ltx\ parameters}
  values to the terminal and log file so that you can
 compare the two sets of parameter values.
+
+By using the macro \cmd{\settypeoutlayoutunit}\meta{unit} the user can
+change the unit in which the layout list is shown. Very handy when
+designing in, say, centimeters. Supported units are \texttt{pt},
+\texttt{mm}, \texttt{cm}, \texttt{in}, \texttt{bp}, \texttt{dd} and
+\texttt{cc}, default being \texttt{pt}.
 
 \section{Side margins}
 
@@ -4462,8 +4491,8 @@ effect.
 
 \svnidlong
 {$Ignore: $}
-{$LastChangedDate: 2010-05-13 17:10:00 +0200 (Thu, 13 May 2010) $}
-{$LastChangedRevision: 210 $}
+{$LastChangedDate: 2010-09-19 13:11:31 +0200 (Sun, 19 Sep 2010) $}
+{$LastChangedRevision: 275 $}
 {$LastChangedBy: daleif $}
 
 
@@ -5289,23 +5318,48 @@ it is hard for a package to get at the internals of the overlying class
 and kernel code. This is not to say that all is well with trying to deal
 with it at the class level.
 
+\LMnote{2010/09/19}{Added description about the starred macros}
 \begin{syntax}
-\cmd{\OnehalfSpacing} \cmd{\DoubleSpacing} \\
+\cmd{\OnehalfSpacing} \cmd{\OnehalfSpacing*} \\
+\cmd{\DoubleSpacing} \cmd{\DoubleSpacing*}\\
 \end{syntax}
 \glossary(OnehalfSpacing)%
   {\cs{OnehalfSpacing}}%
   {Declaration increasing the baseline to create the illusion of double spacing.}
+\glossary(OnehalfSpacing*)%
+  {\cs{OnehalfSpacing*}}%
+  {Same as \cs{OnehalfSpacing} but also effects page note and floats.}
 \glossary(DoubleSpacing)%
   {\cs{DoubleSpacing}}%
   {Declaration doubling the baselineskip.}
+\glossary(DoubleSpacing*)%
+  {\cs{DoubleSpacing*}}%
+  {Same as \cs{DoubleSpacing} but also effects page notes and floats.}
 
-The declaration \cmd{\OnehalfSpacing} increases the spacing between lines
-so that they appear to be double spaced (especially to the thesis layout
-arbiters), while the declaration
-\cmd{\DoubleSpacing} really doubles the spacing between lines which really
-looks bad; but if you have to use it, it is there. The spacing in footnotes
-and floats (e.g., captions) is unaltered, which is usually required once
-the controllers see what a blanket double spacing brings.
+  The declaration \cmd{\OnehalfSpacing} increases the spacing between
+  lines so that they appear to be double spaced (especially to the
+  thesis layout arbiters), while the declaration \cmd{\DoubleSpacing}
+  really doubles the spacing between lines which really looks bad; but
+  if you have to use it, it is there. The spacing in footnotes and
+  floats (e.g., captions) is unaltered, which is usually required once
+  the controllers see what a blanket double spacing brings. Sometimes
+  it is also required to make page notes and floats (including
+  captions) in `double' spacing. The starred version of the two macros
+  above takes care of this. Alternatively the spacing in page notes
+  (i.e. footnotes and friends) or floats an be set explicitly using
+\begin{syntax}
+  \cmd{\setPagenoteSpacing}\marg{factor}\\
+  \cmd{\setFloatSpacing}\marg{factor}
+\end{syntax}
+\glossary(setFloatSpacing)%
+  {\cs{setFloatSpacing}}%
+  {Explicitly set the spacing used inside floats.}
+\glossary(setPagenoteSpacing)%
+  {\cs{setPagenoteSpacing}}%
+  {Explicitly set the spacing used inside page notes such including footnotes.}
+\cs{setFloatSpacing} should go after say \cs{OnehalfSpacing*} if used.
+
+
 
 \PWnote{2009/06/24}{Corrected \cs{SetSingleSpace} to \cs{setSingleSpace}}
 \begin{syntax}
@@ -5321,15 +5375,20 @@ The \cmd{\setSingleSpace} command is meant to be used to
 adjust \emph{slightly} the normal spacing betwen lines, perhaps because
 the font being used looks too crampled or loose. The effect is that the 
 normal \lnc{\baselineskip} spacing will be multiplied by \meta{factor}, which
-should be close to 1.0.
+should be close to 1.0. Using \cmd{\setSingleSpace} will also reset
+the float and page note spacings.
+
 The declaration \cmd{\SingleSpacing} returns everthing to normal, or at
-least the setting from \cmd{\setSingleSpace} if it has been used.
+least the setting from \cmd{\setSingleSpace} if it has been used. It
+will also reset float and page note spacings to the same value.
 
 \begin{syntax}
 \senv{SingleSpace} ...\eenv{SingleSpace} \\
 \senv{Spacing}\marg{factor} ... \eenv{Spacing} \\
 \senv{OnehalfSpace} ... \eenv{OnehalfSpace} \\
+\senv{OnehalfSpace*} ... \eenv{OnehalfSpace*} \\
 \senv{DoubleSpace} ... \eenv{DoubleSpace} \\
+\senv{DoubleSpace*} ... \eenv{DoubleSpace*} \\
 \end{syntax}
 \glossary(SingleSpace)%
   {\senv{SingleSpace}}%
@@ -5340,9 +5399,15 @@ least the setting from \cmd{\setSingleSpace} if it has been used.
 \glossary(OnehalfSpace)%
   {\senv{OnehalfSpace}}%
   {Environment form of \cs{OnehalfSpacing}}
+\glossary(OnehalfSpace*)%
+  {\senv{OnehalfSpace*}}%
+  {Environment form of \cs{OnehalfSpacing*}}
 \glossary(DoubleSpace)%
   {\senv{DoubleSpace}}%
   {Environment form of \cs{DoubleSpacing}}
+\glossary(DoubleSpace*)%
+  {\senv{DoubleSpace*}}%
+  {Environment form of \cs{DoubleSpacing*}}
 
 These are the environments corresponding to the declarations presented
 earlier, for when you want to change the spacing locally.
@@ -6662,8 +6727,8 @@ optional argument of the \cmd{\twocolumn} command. In fact,
 
 \svnidlong
 {$Ignore: $}
-{$LastChangedDate: 2010-08-20 20:04:46 +0200 (Fri, 20 Aug 2010) $}
-{$LastChangedRevision: 267 $}
+{$LastChangedDate: 2010-09-13 11:11:29 +0200 (Mon, 13 Sep 2010) $}
+{$LastChangedRevision: 273 $}
 {$LastChangedBy: daleif $}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -9577,7 +9642,7 @@ normal size by the time subsubsection heads are reached, or before.
      chapterstyle (\fref{dcbringhurst}).
 \item[\hstyle{crosshead}] This set uses the \cstyle{crosshead} chapterstyle
      and the lower level division titles are set as crossheads.
-\item[\hstyle{default}] The default set corresponding the the \ltx\
+\item[\hstyle{default}] The default set corresponding the \ltx\
      \Lclass{book} class.
 \item[\hstyle{dowding}] A set based on Dowding's 
      \btitle{Finer Points}~\cite{DOWDING96}. It uses the \cstyle{dowding} 
@@ -9607,8 +9672,8 @@ normal size by the time subsubsection heads are reached, or before.
 
 \svnidlong
 {$Ignore: $}
-{$LastChangedDate: 2010-06-25 13:34:23 +0200 (Fri, 25 Jun 2010) $}
-{$LastChangedRevision: 236 $}
+{$LastChangedDate: 2010-09-13 11:11:29 +0200 (Mon, 13 Sep 2010) $}
+{$LastChangedRevision: 273 $}
 {$LastChangedBy: daleif $}
 
 \chapterstyle{demo3}
@@ -9761,7 +9826,7 @@ For reference, the full list is given in \tref{tab:callthispagestyle}.
 \item[\pstyle{empty}] The headers\index{header} and footers\index{footer} are empty.
 \item[\pstyle{plain}] The header\index{header} is empty and the folio\index{folio} (page number)
      is centered at the bottom of the page.
-\item[\pstyle{headings}] The footer\index{footer} is empty. The header\index{header} contains the
+\item[\pstyle{headings}] The footer\index{footer} is empty. The header\index{header} contains 
      the folio\index{folio} at the outer side of the page; on verso
      pages the chapter name, number and title, in slanted uppercase is
      set at the spine margin and on recto pages the section number
@@ -10061,7 +10126,7 @@ A header\index{header} may have a rule drawn between it and the top of
 the typeblock\index{typeblock}, and similarly a rule may be drawn 
 between the bottom of the typeblock\index{typeblock} and the 
 footer\index{footer}. 
-The \cmd{\makeheadrule} macro specifies the the \meta{width}
+The \cmd{\makeheadrule} macro specifies the \meta{width}
 and \meta{thickness} of the rule below the \meta{style} pagestyle 
 header\index{header}, and the \cmd{\makefootrule} does the same for 
 the rule above the footer\index{footer}; the
@@ -10195,7 +10260,7 @@ but note that \Mname\ does not use this.
 You don't need to understand this but in outline the first three lines specify
 the contents of the footers and headers, and the remainder of the code sets 
 the marks that will be used in the headers. The \cmd{\leftmark} is specified to be
-the the word `chapter', 
+the word `chapter', 
 followed by the number if it is in the \cmd{\mainmatter} and the \texttt{secnumdepth}
 is such that chapters are numbered, followed by the chapter's title; all this 
 is made to be in upper case (via the \cmd{\MakeUppercase} macro). Similarly
@@ -14078,8 +14143,8 @@ before the stuff you want to have moved out of, say, a part.
 
 \svnidlong
 {$Ignore: $}
-{$LastChangedDate: 2010-05-13 17:10:00 +0200 (Thu, 13 May 2010) $}
-{$LastChangedRevision: 210 $}
+{$LastChangedDate: 2010-09-13 11:11:29 +0200 (Mon, 13 Sep 2010) $}
+{$LastChangedRevision: 273 $}
 {$LastChangedBy: daleif $}
 
 
@@ -14650,7 +14715,7 @@ A float is never put on an earlier page than its definition but may be
 put on the same or later page of its definition. If a float cannot be 
 placed, all suceeding floats will be held up, and \ltx\ can store no 
 more than 16 held up floats. A float cannot be placed if it would cause 
-an overfull page, or it otherwise cannot be fitted according the the 
+an overfull page, or it otherwise cannot be fitted according the  
 float placement parameters.
 A \cmd{\clearpage} or \cmd{\cleardoublepage} or \eenv{document} 
 flushes\index{float!flush}
@@ -16102,7 +16167,7 @@ centered.
 
 \index{caption!side|(}
 
-    Typically captions are put either above or below the the element they
+    Typically captions are put either above or below the element they
 are describing. Sometimes it is desireable to put a caption at the
 side of the element instead.
 
@@ -16159,7 +16224,7 @@ neither checks nor fixes the side caption parameters.
 \end{syntax}
 \glossary(sidecapmargin)%
   {\cs{sidecapmargin}\marg{margin}}%
-  {Sets the the margin for sidecaptions.}%
+  {Sets the margin for sidecaptions.}%
 \glossary(ifsidecapleft)%
   {\cs{ifsidecapleft}}%
   {\ptrue\ if sidecaptions will be set in the left margin,
@@ -16725,8 +16790,8 @@ footnote\index{footnote!text} text.
 
 \svnidlong
 {$Ignore: $}
-{$LastChangedDate: 2010-05-13 17:10:00 +0200 (Thu, 13 May 2010) $}
-{$LastChangedRevision: 210 $}
+{$LastChangedDate: 2010-09-13 11:11:29 +0200 (Mon, 13 Sep 2010) $}
+{$LastChangedRevision: 273 $}
 {$LastChangedBy: daleif $}
 
 
@@ -17401,7 +17466,7 @@ case \emph{decked heads} are used.
 A decked head\index{table!column!decked head} consists of a 
 \emph{spanner head}\index{table!column!spanner head} and the two or 
 more column heads it applies to. A horizontal 
-\emph{spanner rule}\index{table!column!spanner rule} is set between the the 
+\emph{spanner rule}\index{table!column!spanner rule} is set between the  
 spanner and column heads to 
 show which columns belong to the spanner.
 
@@ -18696,8 +18761,8 @@ illustrate these points.
 
 \svnidlong
 {$Ignore: $}
-{$LastChangedDate: 2010-05-13 17:10:00 +0200 (Thu, 13 May 2010) $}
-{$LastChangedRevision: 210 $}
+{$LastChangedDate: 2010-09-17 00:43:51 +0200 (Fri, 17 Sep 2010) $}
+{$LastChangedRevision: 274 $}
 {$LastChangedBy: daleif $}
 
 \chapter{Page notes} \label{chap:mnotes}
@@ -18943,31 +19008,33 @@ fix most overruns.
 You must use an integer in the redefinition as the command is going to be 
 used in a place where \tx\ expects an integer.
 
-\begin{syntax}
-\cmd{\footnoteA}\marg{text} \\
-\cmd{\footnoteB}\marg{text} \\
-\cmd{\footnoteC}\marg{text} \\
-\end{syntax}
-\glossary(footnoteA)%
-  {\cs{footnoteA}\marg{text}}%
-  {A series A footnote.}
-\glossary(footnoteB)%
-  {\cs{footnoteB}\marg{text}}%
-  {A series B footnote.}
-\glossary(footnotec)%
-  {\cs{footnoteC}\marg{text}}%
-  {A series C footnote.}
-
-    In addition to the regular \cmd{\footnote} the class provides 
-three further\index{footnote!series} series 
-of footnotes, namely the `A', `B', and `C' series which are
-distinguished by appending the series' uppercase letter at the end of
-the command, like \cmd{\footnoteB} for the `B' series.
-Perhaps the normal footnotes are required, 
-marked\index{footnote!marker} flagged with arabic numerals, and another 
-kind of footnote flagged with roman numerals. Each series has its own
-\cmd{\footnotemarkB}, \cmd{\footnotetextB} and so on matching the regular
-commands.
+\LMnote{2010/09/17}{removed the text below, I see no reason for adding
+this to memoir, so it is now removed from the manual}
+% \begin{syntax}
+% \cmd{\footnoteA}\marg{text} \\
+% \cmd{\footnoteB}\marg{text} \\
+% \cmd{\footnoteC}\marg{text} \\
+% \end{syntax}
+% \glossary(footnoteA)%
+%   {\cs{footnoteA}\marg{text}}%
+%   {A series A footnote.}
+% \glossary(footnoteB)%
+%   {\cs{footnoteB}\marg{text}}%
+%   {A series B footnote.}
+% \glossary(footnotec)%
+%   {\cs{footnoteC}\marg{text}}%
+%   {A series C footnote.}
+%
+%     In addition to the regular \cmd{\footnote} the class provides 
+% three further\index{footnote!series} series 
+% of footnotes, namely the `A', `B', and `C' series which are
+% distinguished by appending the series' uppercase letter at the end of
+% the command, like \cmd{\footnoteB} for the `B' series.
+% Perhaps the normal footnotes are required, 
+% marked\index{footnote!marker} flagged with arabic numerals, and another 
+% kind of footnote flagged with roman numerals. Each series has its own
+% \cmd{\footnotemarkB}, \cmd{\footnotetextB} and so on matching the regular
+% commands.
 
 
 \begin{syntax}
@@ -21654,8 +21721,8 @@ and the result is shown on the next page.
 
 \svnidlong
 {$Ignore: $}
-{$LastChangedDate: 2010-05-13 17:10:00 +0200 (Thu, 13 May 2010) $}
-{$LastChangedRevision: 210 $}
+{$LastChangedDate: 2010-09-13 11:11:29 +0200 (Mon, 13 Sep 2010) $}
+{$LastChangedRevision: 273 $}
 {$LastChangedBy: daleif $}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -22090,7 +22157,7 @@ from the \Lpack{framed} package.
 and \Ie{shaded} environments do not closely box the indented text. The
 \Ie{qframe} and \Ie{qshade} environments do provide close 
 boxing.\footnote{Donald Arseneau has said that he may put something similar
-in a later version the the \Ie{framed} package.}
+in a later version the \Ie{framed} package.}
 The difference can be seen in the following \Ie{quotation}.
 
 \begin{quotation}
@@ -22756,7 +22823,7 @@ Then, for each line it does the following:
       as a single token called \cmd{\verbatim@line}.
 \item If the characters are the string `\verb?\end{verbatim}?' it finishes
       the verbatim environment.
-\item Otherwise it calls the the macro \cmd{\verbatim@processline} whose 
+\item Otherwise it calls the macro \cmd{\verbatim@processline} whose 
       argument is the characters in the 
       line, treated as a paragraph. It then starts all over again with
       the next line.
@@ -23367,7 +23434,7 @@ is called. This is defined in lines 16 and 17, and simply writes
 out to the figure file. The \cmd{\endwriteverbatim}, and any other kind of
 \cs{end...verbatim}, command is very sensitive to anything that follows it,
 and in this case did not like to be immediately followed by an
-\verb?\addtostream{...}?, but did not mind it being wrapped up in the
+\verb?\addtostream{...}?, but did not mind it being wrapped up in 
 the \cmd{\finishwritefigure} macro.
 
     The \cmd{\printfigures} macro defined in the last three lines of the code
@@ -23988,8 +24055,8 @@ will require the use of \cmd{\titleref} and so the declaration
 
 \svnidlong
 {$Ignore: $}
-{$LastChangedDate: 2010-06-09 14:23:37 +0200 (Wed, 09 Jun 2010) $}
-{$LastChangedRevision: 219 $}
+{$LastChangedDate: 2010-09-13 11:11:29 +0200 (Mon, 13 Sep 2010) $}
+{$LastChangedRevision: 273 $}
 {$LastChangedBy: daleif $}
 
 
@@ -24530,7 +24597,7 @@ then the indexed items are read from the file called \file{file.ind}.
   {Typeset index in two columns (the default).}
 \glossary(indexname)%
   {\cs{indexname}}%
-  {Name used for the the index title.}
+  {Name used for the theindex title.}
 The index entries are typeset within the \Ie{theindex} 
 environment. By default it is typeset with two 
 columns\indextwo{double column}{index}
@@ -24850,7 +24917,7 @@ and its operation can be controlled by a
 (by default this is an \pixfile{ist} file). Such a file consists of two 
 parts. The first
 part specifies \Pmakeindex\ commands that can be included in the
-\meta{stuff} argument to \cmd{\index}. The second part controls how the
+\meta{stuff} argument to \cmd{\index}. The second part controls how 
 the sorted index data is to be output.
 
     I will only describe the most common elements of what you can put in 
@@ -25005,7 +25072,7 @@ is defined, you would do
 
     As a special case, if you want an index item to have a page range 
 put the two
-characters \verb?|(? at the end of the the argument on the first page, and 
+characters \verb?|(? at the end of the argument on the first page, and 
 the character pair \verb?|)? at the end of the argument on the last page.
 For example:
 \begin{lcode}
@@ -30709,8 +30776,8 @@ trim marks Rolf Niepraschk suggested the following trick
 
 \svnidlong
 {$Ignore: $}
-{$LastChangedDate: 2010-05-13 17:10:00 +0200 (Thu, 13 May 2010) $}
-{$LastChangedRevision: 210 $}
+{$LastChangedDate: 2010-09-13 11:11:29 +0200 (Mon, 13 Sep 2010) $}
+{$LastChangedRevision: 273 $}
 {$LastChangedBy: daleif $}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -31447,7 +31514,7 @@ The shortest line that \ltx\ can draw is about ten points
 (1/7 inch approximately) in overall length. You can, though, draw lines that
 are too long to fit on the page.
 
-    Figure~\ref{flpic:lslope} shows the the lines and arrows slanting
+    Figure~\ref{flpic:lslope} shows the lines and arrows slanting
 upwards and to the right that can be drawn in \ltx. The slope $(i,j)$
 pair are shown to the right of the first set of lines and arrows, together
 with the $j/i$ ratio which gives the slope of the line as a decimal number.
